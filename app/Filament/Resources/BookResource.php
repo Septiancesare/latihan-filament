@@ -8,12 +8,13 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BookResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BookResource\RelationManagers;
-use Filament\Forms\Components\Select;
 
 class BookResource extends Resource
 {
@@ -37,12 +38,16 @@ class BookResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('Bookname')->sortable(),
+                TextColumn::make('Writer')->sortable(),
+                TextColumn::make('Availability')->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nim')->unique();
             $table->string('nama');
-            $table -> enum('fakultas', ['FT', 'FKIP', 'FK']);
+            $table->enum('fakultas', ['FT', 'FKIP', 'FK']);
+            $table->string('student_number')->unique();
             $table->timestamps();
+
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
